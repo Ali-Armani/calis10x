@@ -40,10 +40,14 @@ export function SiteHeader() {
 }
 
 export function SiteFooter() {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
+  const year = new Intl.NumberFormat(locale === "fa" ? "fa-IR" : "en-US", {
+    useGrouping: false,
+  }).format(new Date().getFullYear());
   return (
-    <footer className="border-t border-border py-8 text-center text-xs uppercase tracking-[0.2em] text-muted-foreground">
-      {t.footer}
+    <footer className="border-t border-border py-8 text-center text-muted-foreground">
+      <p className="text-xs uppercase tracking-[0.2em]">{t.footer}</p>
+      <p className="mt-3 text-xs">{t.copyright.replace("{year}", year)}</p>
     </footer>
   );
 }

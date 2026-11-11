@@ -31,5 +31,6 @@ export const en = {
     level: "Level",
   },
   footer: "Train smart. Master skills. Go 10X.",
+  copyright: "© {year} Calis10x • Founded by Ali Armani",
 };
 export type Dictionary = typeof en;

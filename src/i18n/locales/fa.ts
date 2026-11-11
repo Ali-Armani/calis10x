@@ -33,4 +33,5 @@ export const fa: Dictionary = {
     level: "سطح",
   },
   footer: "هوشمند تمرین کن. مهارت‌ها را تسلط پیدا کن. ۱۰ برابر پیش برو.",
+  copyright: "© {year} Calis10x • بنیان‌گذار: علی آرمانی",
 };
