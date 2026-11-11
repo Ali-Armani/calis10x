@@ -27,7 +27,7 @@ function Index() {
         <div className="absolute inset-0 -z-10 bg-hero-fade md:bg-hero-side rtl:md:-scale-x-100" />
         <div className="mx-auto flex min-h-[86vh] max-w-6xl flex-col justify-end px-4 pb-16 md:justify-center md:pb-0">
           <p className="eyebrow animate-rise">{t.hero.eyebrow}</p>
-          <h1 className="mt-4 max-w-xl text-5xl font-bold leading-[0.95] md:text-7xl animate-rise">
+          <h1 className="mt-4 max-w-3xl text-5xl font-bold leading-[0.95] md:text-7xl animate-rise">
             {t.hero.slogan1}
             <br />
             {t.hero.slogan2}
