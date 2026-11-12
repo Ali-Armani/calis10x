@@ -19,7 +19,14 @@ export const fa: Dictionary = {
     ],
   },
   levels: { beginner: "مبتدی", intermediate: "متوسط", advanced: "پیشرفته", elite: "حرفه‌ای" },
-  categories: { all: "همه", push: "فشاری", pull: "کششی", core: "مرکز بدن", legs: "پا", skill: "مهارتی" },
+  categories: {
+    all: "همه",
+    push: "فشاری",
+    pull: "کششی",
+    core: "مرکز بدن",
+    legs: "پا",
+    skill: "مهارتی",
+  },
   exercises: {
     title: "کتابخانه حرکات",
     sub: "حرکات پایه کلیستنیکس همراه با راهنمای تکنیک.",

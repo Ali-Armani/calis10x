@@ -18,7 +18,13 @@ export default defineConfig({
   vite: {
     // Pre-bundle UI deps at startup so a mid-session re-optimization can't load two React copies.
     optimizeDeps: {
-      include: ["@radix-ui/react-slot", "class-variance-authority", "lucide-react", "clsx", "tailwind-merge"],
+      include: [
+        "@radix-ui/react-slot",
+        "class-variance-authority",
+        "lucide-react",
+        "clsx",
+        "tailwind-merge",
+      ],
     },
   },
 });

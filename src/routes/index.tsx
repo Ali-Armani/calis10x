@@ -8,9 +8,15 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Calis10x — Train Smart. Master Skills. Go 10X." },
-      { name: "description", content: "Calisthenics skill progressions, technique guides and intelligent training." },
+      {
+        name: "description",
+        content: "Calisthenics skill progressions, technique guides and intelligent training.",
+      },
       { property: "og:title", content: "Calis10x — Train Smart. Master Skills. Go 10X." },
-      { property: "og:description", content: "Calisthenics skill progressions, technique guides and intelligent training." },
+      {
+        property: "og:description",
+        content: "Calisthenics skill progressions, technique guides and intelligent training.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -23,7 +29,13 @@ function Index() {
   return (
     <>
       <section className="relative isolate overflow-hidden">
-        <img src={hero} alt="" width={1024} height={1280} className="absolute inset-0 -z-10 h-full w-full object-cover object-[70%_center] opacity-70 md:object-right" />
+        <img
+          src={hero}
+          alt=""
+          width={1024}
+          height={1280}
+          className="absolute inset-0 -z-10 h-full w-full object-cover object-[70%_center] opacity-70 md:object-right"
+        />
         <div className="absolute inset-0 -z-10 bg-hero-fade md:bg-hero-side rtl:md:-scale-x-100" />
         <div className="mx-auto flex min-h-[86vh] max-w-6xl flex-col justify-end px-4 pb-16 md:justify-center md:pb-0">
           <p className="eyebrow animate-rise">{t.hero.eyebrow}</p>
@@ -49,7 +61,9 @@ function Index() {
         <div className="mt-10 grid gap-px overflow-hidden rounded-md border border-border bg-border md:grid-cols-3">
           {t.pillars.items.map((p, i) => (
             <div key={p.t} className="bg-card p-6">
-              <span className="font-display text-sm text-primary" dir="ltr">0{i + 1}</span>
+              <span className="font-display text-sm text-primary" dir="ltr">
+                0{i + 1}
+              </span>
               <h3 className="mt-3 text-lg font-semibold">{p.t}</h3>
               <p className="mt-2 text-sm text-muted-foreground">{p.d}</p>
             </div>

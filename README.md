@@ -29,14 +29,14 @@ Because most of the code is AI-generated, I treat it like code from a junior col
 
 ## Tech stack
 
-| Area | Technology |
-| --- | --- |
-| Framework | [TanStack Start](https://tanstack.com/start) (TanStack Router), React 19, TypeScript |
-| Styling | Tailwind CSS v4, Radix UI primitives (shadcn/ui style components) |
-| Tooling | Vite, Vitest + Testing Library, ESLint, Prettier |
-| Package manager | Bun |
-| Hosting | Vercel |
-| AI tools | Lovable (code generation), Claude, ChatGPT |
+| Area            | Technology                                                                           |
+| --------------- | ------------------------------------------------------------------------------------ |
+| Framework       | [TanStack Start](https://tanstack.com/start) (TanStack Router), React 19, TypeScript |
+| Styling         | Tailwind CSS v4, Radix UI primitives (shadcn/ui style components)                    |
+| Tooling         | Vite, Vitest + Testing Library, ESLint, Prettier                                     |
+| Package manager | Bun                                                                                  |
+| Hosting         | Vercel                                                                               |
+| AI tools        | Lovable (code generation), Claude, ChatGPT                                           |
 
 ## Getting started
 
