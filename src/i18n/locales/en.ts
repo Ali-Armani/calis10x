@@ -33,7 +33,8 @@ export const en = {
   exercises: {
     title: "Exercise library",
     sub: "The foundation movements of calisthenics, with technique guidance.",
-    search: "Search exercises…",
+    search: "Search exercises or muscles…",
+    allLevels: "All levels",
     empty: "No exercises match your filters.",
     muscles: "Target muscles",
     cues: "Technique cues",

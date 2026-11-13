@@ -1,5 +1,5 @@
 import { useI18n } from "@/i18n/I18nProvider";
-import type { Level } from "./data";
+import type { Level } from "./types";
 
 const BARS: Record<Level, number> = { beginner: 1, intermediate: 2, advanced: 3, elite: 4 };
 

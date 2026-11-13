@@ -1,23 +1,24 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 import { useI18n } from "@/i18n/I18nProvider";
-import { getExercise } from "@/features/exercises/data";
+import { catalogQueryOptions } from "@/features/exercises/catalog";
 import { LevelBadge } from "@/features/exercises/LevelBadge";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/exercises/$slug")({
-  loader: ({ params }) => {
-    const ex = getExercise(params.slug);
-    if (!ex) throw notFound();
-    return ex;
+  loader: async ({ params, context }) => {
+    const { exercises } = await context.queryClient.ensureQueryData(catalogQueryOptions);
+    const exercise = exercises.find((e) => e.slug === params.slug);
+    if (!exercise) throw notFound();
+    return { exercise, exercises };
   },
   head: ({ loaderData }) => ({
     meta: loaderData
       ? [
-          { title: `${loaderData.name.en} — Technique Guide | Calis10x` },
-          { name: "description", content: loaderData.summary.en },
-          { property: "og:title", content: `${loaderData.name.en} — Calis10x` },
-          { property: "og:description", content: loaderData.summary.en },
+          { title: `${loaderData.exercise.name.en} — Technique Guide | Calis10x` },
+          { name: "description", content: loaderData.exercise.summary.en },
+          { property: "og:title", content: `${loaderData.exercise.name.en} — Calis10x` },
+          { property: "og:description", content: loaderData.exercise.summary.en },
           { property: "og:type", content: "article" },
           { name: "twitter:card", content: "summary" },
         ]
@@ -27,7 +28,7 @@ export const Route = createFileRoute("/exercises/$slug")({
 });
 
 function ExerciseDetail() {
-  const ex = Route.useLoaderData();
+  const { exercise: ex, exercises } = Route.useLoaderData();
   const { t, locale } = useI18n();
   const section = (title: string, items: string[]) => (
     <div className="rounded-md border border-border bg-card p-5">
@@ -66,7 +67,8 @@ function ExerciseDetail() {
           <h2 className="eyebrow">{t.exercises.progression}</h2>
           <div className="mt-4 flex flex-wrap items-center gap-2">
             {ex.progression.map((s, i) => {
-              const step = getExercise(s)!;
+              const step = exercises.find((e) => e.slug === s);
+              if (!step) return null;
               return (
                 <div key={s} className="flex items-center gap-2">
                   {i > 0 && <span className="h-px w-6 bg-border" />}

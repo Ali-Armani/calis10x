@@ -1,12 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useMemo, useState, type ReactNode } from "react";
 import { Input } from "@/components/ui/input";
 import { useI18n } from "@/i18n/I18nProvider";
-import { EXERCISES, type Category } from "@/features/exercises/data";
+import { catalogQueryOptions } from "@/features/exercises/catalog";
+import { searchExercises } from "@/features/exercises/search";
+import type { Category, Level } from "@/features/exercises/types";
 import { LevelBadge } from "@/features/exercises/LevelBadge";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/exercises/")({
+  loader: ({ context }) => context.queryClient.ensureQueryData(catalogQueryOptions),
   head: () => ({
     meta: [
       { title: "Exercise Library — Calis10x" },
@@ -28,41 +31,71 @@ export const Route = createFileRoute("/exercises/")({
 });
 
 const CATS: (Category | "all")[] = ["all", "push", "pull", "core", "legs", "skill"];
+const LEVELS: (Level | "all")[] = ["all", "beginner", "intermediate", "advanced", "elite"];
+
+function Chip({
+  active,
+  onClick,
+  children,
+}: {
+  active: boolean;
+  onClick: () => void;
+  children: ReactNode;
+}) {
+  return (
+    <button
+      type="button"
+      aria-pressed={active}
+      onClick={onClick}
+      className={cn(
+        "rounded-md border px-3 py-1.5 text-sm transition-colors",
+        active
+          ? "border-primary bg-primary text-primary-foreground"
+          : "border-border text-muted-foreground hover:text-foreground",
+      )}
+    >
+      {children}
+    </button>
+  );
+}
 
 function ExercisesPage() {
   const { t, locale } = useI18n();
+  const { exercises, muscles } = Route.useLoaderData();
   const [cat, setCat] = useState<Category | "all">("all");
+  const [level, setLevel] = useState<Level | "all">("all");
   const [q, setQ] = useState("");
-  const list = EXERCISES.filter(
-    (e) =>
-      (cat === "all" || e.category === cat) &&
-      (e.name[locale] + e.name.en).toLowerCase().includes(q.toLowerCase()),
+
+  const list = useMemo(
+    () => searchExercises(exercises, muscles, { query: q, category: cat, level }),
+    [exercises, muscles, q, cat, level],
   );
+
   return (
     <div className="mx-auto max-w-6xl px-4 py-12">
       <h1 className="text-4xl font-bold">{t.exercises.title}</h1>
       <p className="mt-2 text-muted-foreground">{t.exercises.sub}</p>
-      <div className="mt-8 flex flex-col gap-3 md:flex-row md:items-center">
+      <div className="mt-8 space-y-3">
         <Input
           value={q}
           onChange={(e) => setQ(e.target.value)}
           placeholder={t.exercises.search}
-          className="md:max-w-xs"
+          aria-label={t.exercises.search}
+          maxLength={60}
+          className="md:max-w-sm"
         />
         <div className="flex flex-wrap gap-2">
           {CATS.map((c) => (
-            <button
-              key={c}
-              onClick={() => setCat(c)}
-              className={cn(
-                "rounded-md border px-3 py-1.5 text-sm transition-colors",
-                cat === c
-                  ? "border-primary bg-primary text-primary-foreground"
-                  : "border-border text-muted-foreground hover:text-foreground",
-              )}
-            >
+            <Chip key={c} active={cat === c} onClick={() => setCat(c)}>
               {t.categories[c]}
-            </button>
+            </Chip>
+          ))}
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {LEVELS.map((lv) => (
+            <Chip key={lv} active={level === lv} onClick={() => setLevel(lv)}>
+              {lv === "all" ? t.exercises.allLevels : t.levels[lv]}
+            </Chip>
           ))}
         </div>
       </div>
@@ -81,7 +114,7 @@ function ExercisesPage() {
               <h2 className="mt-2 text-xl font-semibold group-hover:text-primary">
                 {e.name[locale]}
               </h2>
-              <p className="mt-1 text-sm text-muted-foreground">{e.summary[locale]}</p>
+              <p className="mt-1text-sm text-muted-foreground">{e.summary[locale]}</p>
               <div className="mt-4">
                 <LevelBadge level={e.level} />
               </div>
