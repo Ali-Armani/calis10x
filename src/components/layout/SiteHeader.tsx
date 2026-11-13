@@ -12,14 +12,26 @@ export function SiteHeader() {
           CALIS<span className="text-primary">10X</span>
         </Link>
         <nav className="flex items-center gap-4 text-sm text-muted-foreground">
-          <Link to="/" activeOptions={{ exact: true }} activeProps={{ className: "text-foreground" }} className="hover:text-foreground">
+          <Link
+            to="/"
+            activeOptions={{ exact: true }}
+            activeProps={{ className: "text-foreground" }}
+            className="hover:text-foreground"
+          >
             {t.nav.home}
           </Link>
-          <Link to="/exercises" activeProps={{ className: "text-foreground" }} className="hover:text-foreground">
+          <Link
+            to="/exercises"
+            activeProps={{ className: "text-foreground" }}
+            className="hover:text-foreground"
+          >
             {t.nav.exercises}
           </Link>
         </nav>
-        <div className="ms-auto flex rounded-md border border-border p-0.5" aria-label={t.nav.language}>
+        <div
+          className="ms-auto flex rounded-md border border-border p-0.5"
+          aria-label={t.nav.language}
+        >
           {LOCALES.map((l) => (
             <button
               key={l.code}
@@ -27,7 +39,9 @@ export function SiteHeader() {
               title={l.label}
               className={cn(
                 "rounded px-2 py-1 text-xs font-semibold transition-colors",
-                locale === l.code ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground",
+                locale === l.code
+                  ? "bg-primary text-primary-foreground"
+                  : "text-muted-foreground hover:text-foreground",
               )}
             >
               {l.short}

@@ -109,8 +109,18 @@
   --sidebar-accent-foreground: oklch(0.97 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.88 0.24 140);
-  --gradient-hero: linear-gradient(180deg, oklch(0.13 0 0 / 0) 0%, oklch(0.13 0 0 / 0.85) 70%, oklch(0.13 0 0) 100%);
-  --gradient-hero-side: linear-gradient(90deg, oklch(0.13 0 0) 0%, oklch(0.13 0 0 / 0.6) 50%, oklch(0.13 0 0 / 0) 100%);
+  --gradient-hero: linear-gradient(
+    180deg,
+    oklch(0.13 0 0 / 0) 0%,
+    oklch(0.13 0 0 / 0.85) 70%,
+    oklch(0.13 0 0) 100%
+  );
+  --gradient-hero-side: linear-gradient(
+    90deg,
+    oklch(0.13 0 0) 0%,
+    oklch(0.13 0 0 / 0.6) 50%,
+    oklch(0.13 0 0 / 0) 100%
+  );
   --shadow-glow: 0 0 40px -8px color-mix(in oklab, var(--primary) 55%, transparent);
 }
 
@@ -126,17 +136,52 @@
 }
 
 @layer base {
-  html[dir="rtl"] body { font-family: "Vazirmatn", sans-serif; }
-  body { font-family: var(--font-sans); }
-  h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.02em; }
-  html[dir="rtl"] h1, html[dir="rtl"] h2, html[dir="rtl"] h3 { font-family: "Vazirmatn", sans-serif; letter-spacing: 0; }
+  html[dir="rtl"] body {
+    font-family: "Vazirmatn", sans-serif;
+  }
+  body {
+    font-family: var(--font-sans);
+  }
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+  html[dir="rtl"] h1,
+  html[dir="rtl"] h2,
+  html[dir="rtl"] h3 {
+    font-family: "Vazirmatn", sans-serif;
+    letter-spacing: 0;
+  }
 }
 
-@utility bg-hero-fade { background-image: var(--gradient-hero); }
-@utility bg-hero-side { background-image: var(--gradient-hero-side); }
-@utility shadow-glow { box-shadow: var(--shadow-glow); }
-@utility eyebrow {
-  font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.2em; font-weight: 600; color: var(--color-primary);
+@utility bg-hero-fade {
+  background-image: var(--gradient-hero);
 }
-@keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
-@utility animate-rise { animation: rise 0.7s cubic-bezier(.2,.7,.2,1) both; }
+@utility bg-hero-side {
+  background-image: var(--gradient-hero-side);
+}
+@utility shadow-glow {
+  box-shadow: var(--shadow-glow);
+}
+@utility eyebrow {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@utility animate-rise {
+  animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}

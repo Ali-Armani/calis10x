@@ -16,8 +16,20 @@ export const en = {
       { t: "Train with intent", d: "Programs and tracking arrive in the next stages." },
     ],
   },
-  levels: { beginner: "Beginner", intermediate: "Intermediate", advanced: "Advanced", elite: "Elite" },
-  categories: { all: "All", push: "Push", pull: "Pull", core: "Core", legs: "Legs", skill: "Skill" },
+  levels: {
+    beginner: "Beginner",
+    intermediate: "Intermediate",
+    advanced: "Advanced",
+    elite: "Elite",
+  },
+  categories: {
+    all: "All",
+    push: "Push",
+    pull: "Pull",
+    core: "Core",
+    legs: "Legs",
+    skill: "Skill",
+  },
   exercises: {
     title: "Exercise library",
     sub: "The foundation movements of calisthenics, with technique guidance.",
