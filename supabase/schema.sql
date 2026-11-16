@@ -54,3 +54,13 @@ create policy "Public can read exercise_muscles"
 -- No insert/update/delete policies: writes are denied for anon and
 -- authenticated users. Data is changed only from the SQL Editor
 -- (or with the service role key on a trusted server, never in the browser).
+-- Least privilege for the public API roles (read-only).
+-- RLS policies only apply if the role may access the table, and TRUNCATE ignores RLS,
+-- so we remove everything first and then grant SELECT only.
+revoke all on public.muscles, public.exercises, public.exercise_muscles
+  from anon, authenticated;
+
+grant usage on schema public to anon, authenticated;
+
+grant select on public.muscles, public.exercises, public.exercise_muscles
+  to anon, authenticated;
